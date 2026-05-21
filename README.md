@@ -12,6 +12,31 @@ Backend service for identifying and managing unused cloud resources.
 - Mock cloud resource data for local development
 - Ready for future AWS SDK integration
 
+## API Endpoints
+
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/api/health` | Application health check |
+| GET | `/api/aws/ec2/stopped` | List stopped EC2 instances |
+| GET | `/api/aws/ec2/stopped?region=eu-central-1` | Filter stopped instances by AWS region |
+| GET | `/api/aws/ec2/stopped/summary` | Get summary with estimated savings |
+
+---
+
+## Validation & Error Handling
+
+The API includes global exception handling and validation for unsupported AWS regions.
+
+Example error response:
+
+```json
+{
+  "timestamp": "2026-05-21T15:01:02",
+  "status": 400,
+  "error": "Invalid AWS region: eu-central-12"
+}
+```
+
 ## Tech Stack
 
 - Java 21

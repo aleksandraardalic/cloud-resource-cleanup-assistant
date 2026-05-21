@@ -1,5 +1,6 @@
 package dev.ardalic.cloudresourcecleanup.service;
 
+import dev.ardalic.cloudresourcecleanup.exception.InvalidAwsRegionException;
 import dev.ardalic.cloudresourcecleanup.model.Ec2CleanupSummaryResponse;
 import dev.ardalic.cloudresourcecleanup.model.StoppedEc2InstanceResponse;
 import org.springframework.stereotype.Service;
@@ -31,8 +32,18 @@ public class AwsEc2Service {
                         BigDecimal.valueOf(18.20)
                 )
         );
-        if (region == null || region.isBlank()){
+
+        List<String> supportedRegions = List.of(
+                "eu-central-1",
+                "eu-west-1"
+        );
+
+        if (region == null || region.isBlank()) {
             return instances;
+        }
+
+        if (!supportedRegions.contains(region.toLowerCase())) {
+            throw new InvalidAwsRegionException(region);
         }
 
         return instances.stream()

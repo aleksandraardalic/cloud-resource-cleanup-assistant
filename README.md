@@ -4,11 +4,13 @@ Backend service for identifying and managing unused cloud resources.
 
 ## Features
 
-- Health monitoring endpoint
-- REST API built with Spring Boot
-- Clean layered architecture
-- Ready for AWS/Azure integrations
-- Docker-ready structure
+- REST API for identifying stopped AWS EC2 instances
+- Monthly cloud cost savings calculation
+- Summary endpoint with aggregated savings statistics
+- Swagger/OpenAPI documentation
+- Clean layered Spring Boot architecture
+- Mock cloud resource data for local development
+- Ready for future AWS SDK integration
 
 ## Tech Stack
 

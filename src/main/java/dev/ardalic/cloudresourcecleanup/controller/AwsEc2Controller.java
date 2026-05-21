@@ -1,5 +1,6 @@
 package dev.ardalic.cloudresourcecleanup.controller;
 
+import dev.ardalic.cloudresourcecleanup.model.Ec2CleanupSummaryResponse;
 import dev.ardalic.cloudresourcecleanup.model.StoppedEc2InstanceResponse;
 import dev.ardalic.cloudresourcecleanup.service.AwsEc2Service;
 import io.swagger.v3.oas.annotations.Operation;
@@ -26,5 +27,14 @@ public class AwsEc2Controller {
     @GetMapping("/api/aws/ec2/stopped")
     public List<StoppedEc2InstanceResponse> getStoppedInstances() {
         return awsEc2Service.getStoppedInstances();
+    }
+
+    @Operation(
+            summary = "Get EC2 cleanup summary",
+            description = "Returns stopped EC2 instances together with total estimated monthly savings"
+    )
+    @GetMapping("/api/aws/ec2/stopped/summary")
+    public Ec2CleanupSummaryResponse getStoppedInstancesSummary() {
+        return awsEc2Service.getStoppedInstancesSummary();
     }
 }

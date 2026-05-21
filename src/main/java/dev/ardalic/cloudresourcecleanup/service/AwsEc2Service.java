@@ -1,5 +1,6 @@
 package dev.ardalic.cloudresourcecleanup.service;
 
+import dev.ardalic.cloudresourcecleanup.model.Ec2CleanupSummaryResponse;
 import dev.ardalic.cloudresourcecleanup.model.StoppedEc2InstanceResponse;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +30,20 @@ public class AwsEc2Service {
                         "2026-04-28",
                         BigDecimal.valueOf(18.20)
                 )
+        );
+    }
+
+    public Ec2CleanupSummaryResponse getStoppedInstancesSummary() {
+        List<StoppedEc2InstanceResponse> instances = getStoppedInstances();
+
+        BigDecimal totalSavings = instances.stream()
+                .map(StoppedEc2InstanceResponse::estimatedMonthlySavings)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+
+        return new Ec2CleanupSummaryResponse(
+                instances.size(),
+                totalSavings,
+                instances
         );
     }
 }

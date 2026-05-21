@@ -1,0 +1,6 @@
+services:
+  cloud-resource-cleanup-assistant:
+    build: .
+    container_name: cloud-resource-cleanup-assistant
+    ports:
+      - "8080:8080"

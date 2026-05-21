@@ -36,6 +36,19 @@ Example error response:
   "error": "Invalid AWS region: eu-central-12"
 }
 ```
+## Running with Docker
+
+Build and start the application:
+
+```bash
+docker compose up --build
+```
+
+Swagger UI:
+
+```text
+http://localhost:8080/swagger-ui/index.html
+```
 
 ## Tech Stack
 

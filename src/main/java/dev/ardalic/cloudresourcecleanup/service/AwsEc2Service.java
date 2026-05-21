@@ -10,8 +10,8 @@ import java.util.List;
 @Service
 public class AwsEc2Service {
 
-    public List<StoppedEc2InstanceResponse> getStoppedInstances() {
-        return List.of(
+    public List<StoppedEc2InstanceResponse> getStoppedInstances(String region) {
+        List<StoppedEc2InstanceResponse> instances = List.of(
                 new StoppedEc2InstanceResponse(
                         "i-0a1b2c3d4e5f67890",
                         "dev-test-instance",
@@ -31,10 +31,17 @@ public class AwsEc2Service {
                         BigDecimal.valueOf(18.20)
                 )
         );
+        if (region == null || region.isBlank()){
+            return instances;
+        }
+
+        return instances.stream()
+                .filter(instance -> instance.region().equalsIgnoreCase(region))
+                .toList();
     }
 
     public Ec2CleanupSummaryResponse getStoppedInstancesSummary() {
-        List<StoppedEc2InstanceResponse> instances = getStoppedInstances();
+        List<StoppedEc2InstanceResponse> instances = getStoppedInstances(null);
 
         BigDecimal totalSavings = instances.stream()
                 .map(StoppedEc2InstanceResponse::estimatedMonthlySavings)

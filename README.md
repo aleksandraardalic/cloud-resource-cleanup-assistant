@@ -9,6 +9,7 @@ Backend service for identifying and managing unused cloud resources.
 - Summary endpoint with aggregated savings statistics
 - Swagger/OpenAPI documentation
 - Clean layered Spring Boot architecture
+- Automated unit and controller testing
 - Mock cloud resource data for local development
 - Ready for future AWS SDK integration
 
@@ -36,6 +37,15 @@ Example error response:
   "error": "Invalid AWS region: eu-central-12"
 }
 ```
+
+## Testing
+
+Run all tests:
+
+```bash
+./mvnw test
+```
+
 ## Running with Docker
 
 Build and start the application:
@@ -57,6 +67,8 @@ http://localhost:8080/swagger-ui/index.html
 - Maven
 - REST API
 - Git & GitHub
+- JUnit 5
+- MockMvc
 
 ## Current Endpoints
 
@@ -91,6 +103,10 @@ exception/   -> error handling
 - AWS EC2 scanning
 - Stopped resource detection
 - Cost estimation
-- Docker deployment
-- Swagger/OpenAPI documentation
 - Authentication & authorization
+- Real AWS SDK integration
+- Multi-cloud support (AWS/Azure/GCP)
+- Authentication & authorization
+- Persistent database integration
+- Scheduled cleanup jobs
+- Cloud cost analytics dashboard

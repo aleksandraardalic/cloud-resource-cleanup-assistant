@@ -15,6 +15,8 @@ Backend service for identifying and managing unused cloud resources.
 - Port/adapter architecture for cloud integrations
 - Environment-specific Spring profiles (`dev` / `prod`)
 - Structured application logging
+- Environment-aware health monitoring endpoint
+- Structured health response with profile and version metadata
 - Ready for future AWS SDK integration
 
 ## API Endpoints

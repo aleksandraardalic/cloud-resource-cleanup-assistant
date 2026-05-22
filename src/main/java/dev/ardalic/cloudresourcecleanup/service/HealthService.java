@@ -1,15 +1,22 @@
 package dev.ardalic.cloudresourcecleanup.service;
 
+import dev.ardalic.cloudresourcecleanup.model.HealthResponse;
 import org.springframework.stereotype.Service;
 
-import java.util.Map;
+import java.time.LocalDateTime;
+
 
 @Service
 public class HealthService {
-    public Map<String, String> getHealthStatus(){
-        return Map.of(
-                "status", "UP",
-                "service", "cloud-resource-cleanup-assistant"
+
+    public HealthResponse getHealthStatus(String activeProfile) {
+
+        return new HealthResponse(
+                "UP",
+                "cloud-resource-cleanup-assistant",
+                activeProfile,
+                "0.0.1",
+                LocalDateTime.now().toString()
         );
     }
 }

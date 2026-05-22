@@ -2,11 +2,13 @@ package dev.ardalic.cloudresourcecleanup.aws;
 
 import dev.ardalic.cloudresourcecleanup.model.StoppedEc2InstanceResponse;
 import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Profile;
 
 import java.math.BigDecimal;
 import java.util.List;
 
 @Component
+@Profile("dev")
 public class MockEc2Client implements Ec2ClientPort {
 
     @Override

@@ -13,6 +13,7 @@ Backend service for identifying and managing unused cloud resources.
 - Mock cloud resource data for local development
 - Externalized application configuration
 - Port/adapter architecture for cloud integrations
+- Environment-specific Spring profiles (`dev` / `prod`)
 - Ready for future AWS SDK integration
 
 ## API Endpoints
@@ -112,6 +113,14 @@ aws.supported-regions=eu-central-1,eu-west-1
 
 This allows different environments (development, testing, production)
 to use different cloud configurations without changing application code.
+
+Profiles are used to separate development and production configurations.
+
+Example:
+
+```properties
+spring.profiles.active=dev
+```
 
 ## Architecture
 

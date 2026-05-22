@@ -10,10 +10,14 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Value;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Service
 public class AwsEc2Service {
+
+    private static final Logger logger =
+            LoggerFactory.getLogger(AwsEc2Service.class);
 
     private final Ec2ClientPort ec2ClientPort;
 
@@ -26,13 +30,18 @@ public class AwsEc2Service {
 
 
     public List<StoppedEc2InstanceResponse> getStoppedInstances(String region) {
+        logger.info("Fetching stopped EC2 instances");
         List<StoppedEc2InstanceResponse> instances = ec2ClientPort.getStoppedInstances();
 
         if (region == null || region.isBlank()) {
+            logger.info("Returning all stopped instances");
             return instances;
         }
 
+        logger.info("Filtering instances by region: {}", region);
+
         if (!supportedRegions.contains(region.toLowerCase())) {
+            logger.warn("Invalid AWS region requested: {}", region);
             throw new InvalidAwsRegionException(region);
         }
 
@@ -55,3 +64,4 @@ public class AwsEc2Service {
         );
     }
 }
+

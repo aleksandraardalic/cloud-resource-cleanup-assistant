@@ -14,6 +14,7 @@ Backend service for identifying and managing unused cloud resources.
 - Externalized application configuration
 - Port/adapter architecture for cloud integrations
 - Environment-specific Spring profiles (`dev` / `prod`)
+- Structured application logging
 - Ready for future AWS SDK integration
 
 ## API Endpoints

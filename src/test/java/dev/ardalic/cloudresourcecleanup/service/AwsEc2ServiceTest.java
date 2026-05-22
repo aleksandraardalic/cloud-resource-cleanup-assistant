@@ -3,6 +3,7 @@ package dev.ardalic.cloudresourcecleanup.service;
 import dev.ardalic.cloudresourcecleanup.exception.InvalidAwsRegionException;
 import dev.ardalic.cloudresourcecleanup.model.Ec2CleanupSummaryResponse;
 import dev.ardalic.cloudresourcecleanup.model.StoppedEc2InstanceResponse;
+import dev.ardalic.cloudresourcecleanup.aws.MockEc2Client;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -12,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class AwsEc2ServiceTest {
 
-    private final AwsEc2Service awsEc2Service = new AwsEc2Service();
+    private final AwsEc2Service awsEc2Service = new AwsEc2Service(new MockEc2Client());
 
     @Test
     void shouldReturnAllStoppedInstancesWhenRegionIsNotProvided() {

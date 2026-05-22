@@ -11,6 +11,8 @@ Backend service for identifying and managing unused cloud resources.
 - Clean layered Spring Boot architecture
 - Automated unit and controller testing
 - Mock cloud resource data for local development
+- Externalized application configuration
+- Port/adapter architecture for cloud integrations
 - Ready for future AWS SDK integration
 
 ## API Endpoints
@@ -92,11 +94,37 @@ Example response:
 ```text
 controller/  -> REST endpoints
 service/     -> business logic
-model/       -> DTOs and models
-aws/         -> AWS integrations
-config/      -> configuration classes
-exception/   -> error handling
+model/       -> DTOs and response models
+aws/         -> cloud provider adapters and ports
+config/      -> application configuration
+exception/   -> global exception handling
 ```
+
+## Configuration
+
+Application configuration is externalized through `application.properties`.
+
+Example:
+
+```properties
+aws.supported-regions=eu-central-1,eu-west-1
+```
+
+This allows different environments (development, testing, production)
+to use different cloud configurations without changing application code.
+
+## Architecture
+
+The project follows a clean layered architecture with a port/adapter approach
+for cloud integrations.
+
+Current implementation uses:
+
+- `Ec2ClientPort` as the abstraction layer
+- `MockEc2Client` as the current adapter implementation
+
+This architecture allows easy replacement of mock integrations
+with real AWS SDK implementations in the future.
 
 ## Future Improvements
 

@@ -1,5 +1,6 @@
 package dev.ardalic.cloudresourcecleanup.service;
 
+import dev.ardalic.cloudresourcecleanup.aws.Ec2ClientPort;
 import dev.ardalic.cloudresourcecleanup.exception.InvalidAwsRegionException;
 import dev.ardalic.cloudresourcecleanup.model.Ec2CleanupSummaryResponse;
 import dev.ardalic.cloudresourcecleanup.model.StoppedEc2InstanceResponse;
@@ -8,35 +9,24 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Value;
+
+
 @Service
 public class AwsEc2Service {
 
-    public List<StoppedEc2InstanceResponse> getStoppedInstances(String region) {
-        List<StoppedEc2InstanceResponse> instances = List.of(
-                new StoppedEc2InstanceResponse(
-                        "i-0a1b2c3d4e5f67890",
-                        "dev-test-instance",
-                        "eu-central-1",
-                        "t3.medium",
-                        "stopped",
-                        "2026-05-10",
-                        BigDecimal.valueOf(34.50)
-                ),
-                new StoppedEc2InstanceResponse(
-                        "i-0123456789abcdef0",
-                        "old-staging-instance",
-                        "eu-west-1",
-                        "t3.small",
-                        "stopped",
-                        "2026-04-28",
-                        BigDecimal.valueOf(18.20)
-                )
-        );
+    private final Ec2ClientPort ec2ClientPort;
 
-        List<String> supportedRegions = List.of(
-                "eu-central-1",
-                "eu-west-1"
-        );
+    @Value("${aws.supported-regions}")
+    private List<String> supportedRegions;
+
+    public AwsEc2Service(Ec2ClientPort ec2ClientPort) {
+        this.ec2ClientPort = ec2ClientPort;
+    }
+
+
+    public List<StoppedEc2InstanceResponse> getStoppedInstances(String region) {
+        List<StoppedEc2InstanceResponse> instances = ec2ClientPort.getStoppedInstances();
 
         if (region == null || region.isBlank()) {
             return instances;

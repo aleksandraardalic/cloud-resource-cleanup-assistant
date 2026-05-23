@@ -16,7 +16,8 @@ Backend service for identifying and managing unused cloud resources.
 - Environment-specific Spring profiles (`dev` / `prod`)
 - Structured application logging
 - Environment-aware health monitoring endpoint
-- Structured health response with profile and version metadata
+- Structured health response with profile and version metadata 
+- Automated CI pipeline with GitHub Actions
 - Ready for future AWS SDK integration
 
 ## API Endpoints
@@ -60,7 +61,18 @@ Build and start the application:
 docker compose up --build
 ```
 
-Swagger UI:
+## Continuous Integration
+
+The project uses GitHub Actions for automated build and test execution.
+
+Pipeline includes:
+
+- Maven build validation
+- Automated unit and controller tests
+- Java 21 environment setup
+
+
+## Swagger UI:
 
 ```text
 http://localhost:8080/swagger-ui/index.html

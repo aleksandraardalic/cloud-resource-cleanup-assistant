@@ -19,6 +19,7 @@ Backend service for identifying and managing unused cloud resources.
 - Structured health response with profile and version metadata 
 - Automated CI pipeline with GitHub Actions
 - `AwsSdkEc2Client` prepared for real AWS SDK integration
+- Live deployment on Render
 - Ready for future AWS SDK integration
 
 ## API Endpoints
@@ -79,6 +80,20 @@ Pipeline includes:
 http://localhost:8080/swagger-ui/index.html
 ```
 
+## Live Demo
+
+Live API:
+
+https://cloud-resource-cleanup-assistant.onrender.com
+
+Swagger UI:
+
+https://cloud-resource-cleanup-assistant.onrender.com/swagger-ui/index.html
+
+Health endpoint:
+
+https://cloud-resource-cleanup-assistant.onrender.com/api/health
+
 ## Tech Stack
 
 - Java 21
@@ -88,6 +103,9 @@ http://localhost:8080/swagger-ui/index.html
 - Git & GitHub
 - JUnit 5
 - MockMvc
+- Docker
+- GitHub Actions
+- Render
 
 ## Current Endpoints
 

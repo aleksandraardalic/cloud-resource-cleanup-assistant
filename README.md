@@ -21,6 +21,7 @@ Backend service for identifying and managing unused cloud resources.
 - `AwsSdkEc2Client` prepared for real AWS SDK integration
 - Live deployment on Render
 - Detection of unattached AWS EBS volumes
+- Aggregated cloud cleanup savings summary
 - Ready for future AWS SDK integration
 
 ## API Endpoints
@@ -33,6 +34,7 @@ Backend service for identifying and managing unused cloud resources.
 | GET | `/api/aws/ec2/stopped/summary` | Get summary with estimated savings |
 | GET | `/api/aws/ebs/unattached` | List unattached EBS volumes |
 | GET | `/api/aws/ebs/unattached?region=eu-central-1` | Filter unattached EBS volumes by region |
+| GET | `/api/cloud/cleanup/summary` | Get aggregated cloud cleanup statistics |
 ---
 
 ## Validation & Error Handling

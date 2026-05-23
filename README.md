@@ -18,6 +18,7 @@ Backend service for identifying and managing unused cloud resources.
 - Environment-aware health monitoring endpoint
 - Structured health response with profile and version metadata 
 - Automated CI pipeline with GitHub Actions
+- `AwsSdkEc2Client` prepared for real AWS SDK integration
 - Ready for future AWS SDK integration
 
 ## API Endpoints

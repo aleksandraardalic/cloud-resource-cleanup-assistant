@@ -22,6 +22,7 @@ Backend service for identifying and managing unused cloud resources.
 - Live deployment on Render
 - Detection of unattached AWS EBS volumes
 - Aggregated cloud cleanup savings summary
+- Customized OpenAPI / Swagger documentation
 - Ready for future AWS SDK integration
 
 ## API Endpoints
@@ -83,6 +84,12 @@ Pipeline includes:
 ```text
 http://localhost:8080/swagger-ui/index.html
 ```
+
+## API Documentation
+
+Interactive Swagger UI:
+
+https://cloud-resource-cleanup-assistant.onrender.com/swagger-ui/index.html
 
 ## Live Demo
 

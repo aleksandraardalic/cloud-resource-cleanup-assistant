@@ -20,7 +20,7 @@ class AwsEc2ControllerTest {
 
     @Test
     void shouldReturnStoppedInstances() throws Exception {
-        mockMvc.perform(get("/api/aws/ec2/stopped"))
+        mockMvc.perform(get("/api/v1/aws/ec2/stopped"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(2)))
                 .andExpect(jsonPath("$[0].instanceId").value("i-0a1b2c3d4e5f67890"));
@@ -28,7 +28,7 @@ class AwsEc2ControllerTest {
 
     @Test
     void shouldReturnStoppedInstancesFilteredByRegion() throws Exception {
-        mockMvc.perform(get("/api/aws/ec2/stopped")
+        mockMvc.perform(get("/api/v1/aws/ec2/stopped")
                         .param("region", "eu-central-1"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(1)))
@@ -37,7 +37,7 @@ class AwsEc2ControllerTest {
 
     @Test
     void shouldReturnBadRequestForInvalidRegion() throws Exception {
-        mockMvc.perform(get("/api/aws/ec2/stopped")
+        mockMvc.perform(get("/api/v1/aws/ec2/stopped")
                         .param("region", "invalid-region"))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.status").value(400))

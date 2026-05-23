@@ -13,7 +13,9 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class AwsEc2ServiceTest {
 
-    private final AwsEc2Service awsEc2Service = new AwsEc2Service(new MockEc2Client());
+    private final AwsEc2Service awsEc2Service = new AwsEc2Service(
+            new MockEc2Client(),
+            List.of("eu-central-1", "eu-west-1"));
 
     @Test
     void shouldReturnAllStoppedInstancesWhenRegionIsNotProvided() {

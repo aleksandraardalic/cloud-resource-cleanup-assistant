@@ -21,13 +21,15 @@ public class AwsEc2Service {
 
     private final Ec2ClientPort ec2ClientPort;
 
-    @Value("${aws.supported-regions}")
-    private List<String> supportedRegions;
+    private final List<String> supportedRegions;
 
-    public AwsEc2Service(Ec2ClientPort ec2ClientPort) {
+    public AwsEc2Service(
+            Ec2ClientPort ec2ClientPort,
+            @Value("${aws.supported-regions}") List<String> supportedRegions
+    ) {
         this.ec2ClientPort = ec2ClientPort;
+        this.supportedRegions = supportedRegions;
     }
-
 
     public List<StoppedEc2InstanceResponse> getStoppedInstances(String region) {
         logger.info("Fetching stopped EC2 instances");

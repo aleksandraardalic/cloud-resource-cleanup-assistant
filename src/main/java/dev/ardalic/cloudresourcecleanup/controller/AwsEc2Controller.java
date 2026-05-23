@@ -6,12 +6,14 @@ import dev.ardalic.cloudresourcecleanup.service.AwsEc2Service;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("${api.base-path}/aws/ec2")
 @Tag(name = "AWS EC2 API", description = "Endpoints for analyzing AWS EC2 resources")
 public class AwsEc2Controller {
 
@@ -25,7 +27,7 @@ public class AwsEc2Controller {
             summary = "List stopped EC2 instances",
             description = "Returns stopped EC2 instances with optional filtering by AWS region"
     )
-    @GetMapping("/api/aws/ec2/stopped")
+    @GetMapping("/stopped")
     public List<StoppedEc2InstanceResponse> getStoppedInstances(@RequestParam(required = false) String region) {
         return awsEc2Service.getStoppedInstances(region);
     }
@@ -34,7 +36,7 @@ public class AwsEc2Controller {
             summary = "Get EC2 cleanup summary",
             description = "Returns stopped EC2 instances together with total estimated monthly savings"
     )
-    @GetMapping("/api/aws/ec2/stopped/summary")
+    @GetMapping("/stopped/summary")
     public Ec2CleanupSummaryResponse getStoppedInstancesSummary() {
         return awsEc2Service.getStoppedInstancesSummary();
     }

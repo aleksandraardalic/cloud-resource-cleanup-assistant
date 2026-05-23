@@ -3,12 +3,14 @@ package dev.ardalic.cloudresourcecleanup.controller;
 import dev.ardalic.cloudresourcecleanup.model.HealthResponse;
 import dev.ardalic.cloudresourcecleanup.service.HealthService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Value;
 
 @RestController
+@RequestMapping("${api.base-path}")
 @Tag(name = "Health API", description = "Application health monitoring endpoints")
 public class HealthController {
 
@@ -25,7 +27,7 @@ public class HealthController {
             summary = "Health check endpoint",
             description = "Returns application health status"
     )
-    @GetMapping("/api/health")
+    @GetMapping("/health")
     public HealthResponse health(){
        return healthService.getHealthStatus(activeProfile);
     }

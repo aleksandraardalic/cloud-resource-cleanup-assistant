@@ -23,19 +23,20 @@ Backend service for identifying and managing unused cloud resources.
 - Detection of unattached AWS EBS volumes
 - Aggregated cloud cleanup savings summary
 - Customized OpenAPI / Swagger documentation
+- Centralized API versioning configuration
 - Ready for future AWS SDK integration
 
 ## API Endpoints
 
 | Method | Endpoint | Description |
 |---|---|---|
-| GET | `/api/health` | Application health check |
-| GET | `/api/aws/ec2/stopped` | List stopped EC2 instances |
-| GET | `/api/aws/ec2/stopped?region=eu-central-1` | Filter stopped instances by AWS region |
-| GET | `/api/aws/ec2/stopped/summary` | Get summary with estimated savings |
-| GET | `/api/aws/ebs/unattached` | List unattached EBS volumes |
-| GET | `/api/aws/ebs/unattached?region=eu-central-1` | Filter unattached EBS volumes by region |
-| GET | `/api/cloud/cleanup/summary` | Get aggregated cloud cleanup statistics |
+| GET | `/api/v1/health` | Application health check |
+| GET | `/api/v1/aws/ec2/stopped` | List stopped EC2 instances |
+| GET | `/api/v1/aws/ec2/stopped?region=eu-central-1` | Filter stopped instances by AWS region |
+| GET | `/api/v1/aws/ec2/stopped/summary` | Get summary with estimated savings |
+| GET | `/api/v1/aws/ebs/unattached` | List unattached EBS volumes |
+| GET | `/api/v1/aws/ebs/unattached?region=eu-central-1` | Filter unattached EBS volumes by region |
+| GET | `/api/v1/cloud/cleanup/summary` | Get aggregated cloud cleanup statistics |
 ---
 
 ## Validation & Error Handling
@@ -103,7 +104,7 @@ https://cloud-resource-cleanup-assistant.onrender.com/swagger-ui/index.html
 
 Health endpoint:
 
-https://cloud-resource-cleanup-assistant.onrender.com/api/health
+https://cloud-resource-cleanup-assistant.onrender.com/api/v1/health
 
 ## Tech Stack
 
@@ -123,7 +124,7 @@ https://cloud-resource-cleanup-assistant.onrender.com/api/health
 ### Health Check
 
 ```http
-GET /api/health
+GET /api/v1/health
 ```
 
 Example response:

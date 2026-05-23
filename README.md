@@ -20,6 +20,7 @@ Backend service for identifying and managing unused cloud resources.
 - Automated CI pipeline with GitHub Actions
 - `AwsSdkEc2Client` prepared for real AWS SDK integration
 - Live deployment on Render
+- Detection of unattached AWS EBS volumes
 - Ready for future AWS SDK integration
 
 ## API Endpoints
@@ -30,7 +31,8 @@ Backend service for identifying and managing unused cloud resources.
 | GET | `/api/aws/ec2/stopped` | List stopped EC2 instances |
 | GET | `/api/aws/ec2/stopped?region=eu-central-1` | Filter stopped instances by AWS region |
 | GET | `/api/aws/ec2/stopped/summary` | Get summary with estimated savings |
-
+| GET | `/api/aws/ebs/unattached` | List unattached EBS volumes |
+| GET | `/api/aws/ebs/unattached?region=eu-central-1` | Filter unattached EBS volumes by region |
 ---
 
 ## Validation & Error Handling
@@ -181,3 +183,5 @@ with real AWS SDK implementations in the future.
 - Persistent database integration
 - Scheduled cleanup jobs
 - Cloud cost analytics dashboard
+- Unused Elastic IP detection
+- Snapshot cleanup recommendations

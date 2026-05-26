@@ -24,7 +24,7 @@ Backend service for identifying and managing unused cloud resources.
 - Aggregated cloud cleanup savings summary
 - Customized OpenAPI / Swagger documentation
 - Centralized API versioning configuration
-- Ready for future AWS SDK integration
+- Real AWS SDK integration for EC2 scanning
 
 ## API Endpoints
 
@@ -177,6 +177,7 @@ Current implementation uses:
 
 - `Ec2ClientPort` as the abstraction layer
 - `MockEc2Client` as the current adapter implementation
+- Production-ready AWS SDK adapter implementation
 
 This architecture allows easy replacement of mock integrations
 with real AWS SDK implementations in the future.

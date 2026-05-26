@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Value;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.ec2.Ec2Client;
 import software.amazon.awssdk.services.ec2.model.DescribeInstancesRequest;
@@ -21,13 +22,16 @@ public class AwsSdkEc2Client implements Ec2ClientPort {
     private static final Logger logger =
             LoggerFactory.getLogger(AwsSdkEc2Client.class);
 
+    @Value("${aws.region}")
+    private String awsRegion;
+
     @Override
     public List<StoppedEc2InstanceResponse> getStoppedInstances() {
 
         logger.info("Fetching stopped EC2 instances using AWS SDK");
 
         Ec2Client ec2Client = Ec2Client.builder()
-                .region(Region.EU_CENTRAL_1)
+                .region(Region.of(awsRegion))
                 .build();
 
         DescribeInstancesRequest request = DescribeInstancesRequest.builder()
@@ -59,7 +63,7 @@ public class AwsSdkEc2Client implements Ec2ClientPort {
                 instance.instanceId(),
                 name,
                 instance.instanceTypeAsString(),
-                "eu-central-1",
+                awsRegion,
                 "STOPPED",
                 "unknown",
                 BigDecimal.valueOf(25)

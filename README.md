@@ -25,6 +25,7 @@ Backend service for identifying and managing unused cloud resources.
 - Customized OpenAPI / Swagger documentation
 - Centralized API versioning configuration
 - Real AWS SDK integration for EC2 scanning
+- AWS SDK credential-chain compatible configuration
 
 ## API Endpoints
 
@@ -167,6 +168,21 @@ Example:
 ```properties
 spring.profiles.active=dev
 ```
+
+## AWS Credentials
+
+The application is designed to use the standard AWS SDK credential provider chain.
+
+For local development with real AWS integration, credentials can be provided through:
+
+```bash
+aws configure
+or through environment variables:
+AWS_ACCESS_KEY_ID=your-access-key
+AWS_SECRET_ACCESS_KEY=your-secret-key
+AWS_REGION=eu-central-1
+```
+Credentials are never stored in the repository.
 
 ## Architecture
 
